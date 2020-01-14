@@ -9,7 +9,7 @@ class AppHeader extends Component {
     }
     render() {
         return (
-            <Header>
+            <Header className="header">
                 头部
             </Header>
         )

@@ -1,0 +1,18 @@
+.app{
+    min-height: 100vh;
+    font-size: 1.6rem;
+    .aside{
+        color: #FFFFFF;
+        .logo{
+           text-align: center;
+           margin-top: 20px; 
+        }
+    }
+    .header{
+    background: #FFFFFF;
+    }
+    .content{
+        background: #F0F2F5;
+    }
+
+}
