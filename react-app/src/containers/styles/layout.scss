@@ -1,17 +1,34 @@
-.app{
+.app {
     min-height: 100vh;
     font-size: 1.6rem;
-    .aside{
+
+    .aside {
         color: #FFFFFF;
-        .logo{
-           text-align: center;
-           margin-top: 20px; 
+
+        .logo {
+            text-align: center;
+            margin-top: 20px;
         }
     }
-    .header{
-    background: #FFFFFF;
+
+    .header {
+        background: #FFFFFF;
+        height: 6.4rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        justify-content: space-between;
+        .header-right{
+           /*  img{
+                width: 3.2rem;
+                height: 3.2rem;
+                border-radius: 50%;
+                margin-left: 15px;
+            } */
+        }
     }
-    .content{
+
+    .content {
         background: #F0F2F5;
     }
 

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import loadable from './utils/loadable';
 import "./App.css";
+import '@/styles/base.scss';
 const Layout = loadable(() => import('./containers/Layout.jsx'));
 function App() {
   return (

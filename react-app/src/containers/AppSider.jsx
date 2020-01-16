@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Layout, Icon } from "antd";
-const { Sider, } = Layout;
+import CustomMenu from './components/CustomMenu.jsx';
+const { Sider } = Layout;
+
 class AppSider extends Component {
   constructor(props) {
     super(props);
   }
   render() {
+    let { menu } = this.props;
     return (
       <Sider className="aside">
         <div className="logo">
@@ -19,7 +22,8 @@ class AppSider extends Component {
             ></Icon>
           </a>
         </div>
-        侧边栏
+        <CustomMenu menu={menu}></CustomMenu>
+        
       </Sider>
     );
   }

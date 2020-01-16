@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import routes from "@/router/index.js";
 import { Icon, Menu } from "antd";
 import { Switch, Route, Link, withRouter } from "react-router-dom";
-
+import menu from './menu';
 class CustomMenu extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +12,12 @@ class CustomMenu extends Component {
       selectedKeys: []
     };
   }
-  componentDidMount() {
+  /* componentDidMount() {
     let { pathname } = this.props.location;
     this.setState({
       selectedKeys: pathname
     });
-  }
+  } */
   renderMenuItem = ({ key, icon, title }) => {
     return (
       <Menu.Item key={key}>
@@ -49,14 +49,14 @@ class CustomMenu extends Component {
     let { openKeys, selectedKeys } = this.state; 
     return (
       <Menu mode="inline" theme="dark">
-        {this.props.menu && this.props.menu.map(item => {
+        {this.props.menu&&this.props.menu.map(item => {
           return item.subs && item.subs.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item);
         })}
       </Menu>
     );
   }
 }
-CustomMenu.PropTypes = {
+CustomMenu.propTypes = {
   menu:PropTypes.array.isRequired
 }
 export default withRouter(CustomMenu);
