@@ -1,0 +1,54 @@
+.dashboard{
+  padding: 1.6rem 0;
+  .dashboard-header {
+    color: #fff;
+
+    .base-style {
+      display: flex;
+    }
+
+    span {
+      font-weight: 800;
+      font-size: 2rem;
+    }
+
+    .icon-style {
+      color: #fbfbf4b3;
+      font-size: 6rem;
+      margin-right: 1.2rem;
+      border-radius: 4px;
+    }
+
+    .github {
+      background: #70ca63;
+      &:hover .icon-style{
+        background: #fff;
+        color: #70ca63;
+      }
+    }
+
+    .twitter {
+      background: #967adc;
+      &:hover .icon-style {
+        background: #fff;
+        color: #70ca63;
+      }
+    }
+
+    .google {
+      background: #5d5dfd;
+      &:hover .icon-style {
+        background: #fff;
+        color: #70ca63;
+      }
+    }
+
+    .facebook {
+      background: #fb452d;
+      &:hover .icon-style {
+        background: #fff;
+        color: #70ca63;
+      }
+    }
+  }
+}
