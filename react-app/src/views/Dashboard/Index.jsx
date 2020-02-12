@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Divider, Icon } from "antd";
-import LineEchart from './LineEchart';
-import './dashboard.scss';
+import LineEchart from "./LineEchart";
+import RadarChart from './RadarChart';
+import PieChart from './PieChart';
+import "./dashboard.scss";
 const LineEchartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
@@ -21,9 +23,7 @@ const LineEchartData = {
   }
 };
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
+  
   render() {
     return (
       <div className="dashboard">
@@ -68,7 +68,12 @@ class Dashboard extends Component {
         <div className="base-style">
           <h3>Line Echart</h3>
           <Divider />
-          <LineEchart lineData={LineEchartData.newVisitis} /></div>
+          <LineEchart lineData={LineEchartData.newVisitis} />
+        </div>
+        <Row gutter={8}>
+          <Col span={12}><RadarChart  /></Col>
+          <Col span={12}><PieChart /></Col>
+        </Row>
       </div>
     );
   }
