@@ -67,6 +67,11 @@ const menu = [
     key: "/manage",
     icon: "lock",
     title: "manage"
+  },
+  {
+    key: "/textStorage",
+    icon: "ordered-list",
+    title: "textStorage"
   }
 ];
 export default menu;

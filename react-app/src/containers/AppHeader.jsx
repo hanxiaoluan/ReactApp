@@ -1,8 +1,9 @@
 import { Layout, Icon, Badge, Dropdown, Menu, Avatar } from "antd";
 import React, { Component } from "react";
 import avatar from "@/assets/images/avatar.png";
+import { connect } from "react-redux";
+import { toggleMenu } from "../actions/toggleMenu";
 const { Header } = Layout;
-
 class AppHeader extends Component {
   constructor(props) {
     super(props);
@@ -10,11 +11,11 @@ class AppHeader extends Component {
       menuIsFold: false
     };
   }
-  toggleMenu = () => {
+  /* toggleMenu = () => {
     this.setState({
       menuIsFold: !this.state.menuIsFold
     });
-  };
+  }; */
   render() {
     const menu = (
       <Menu>
@@ -39,9 +40,9 @@ class AppHeader extends Component {
     return (
       <Header className="header">
         <Icon
-          type={this.state.menuIsFold ? "menu-fold" : "menu-unfold"}
+          type={this.props.isFold ? "menu-fold" : "menu-unfold"}
           style={{ fontSize: "2rem" }}
-          onClick={this.toggleMenu}
+          onClick={() => this.props.toggleMenu()}
         />
         <div className="header-right">
           <a href="https://github.com/hanxiaoluan/ReactApp">
@@ -67,4 +68,10 @@ class AppHeader extends Component {
     );
   }
 }
-export default AppHeader;
+const mapStateToProps = state => ({
+  isFold: state.menuIsFold.isFold
+});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  toggleMenu: () => dispatch(toggleMenu())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

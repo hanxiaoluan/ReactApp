@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Icon } from "antd";
-import CustomMenu from './components/CustomMenu.jsx';
+import CustomMenu from "./components/CustomMenu.jsx";
 const { Sider } = Layout;
 
 class AppSider extends Component {
@@ -8,9 +8,9 @@ class AppSider extends Component {
     super(props);
   }
   render() {
-    let { menu } = this.props;
+    let { menu, collapsed } = this.props;
     return (
-      <Sider className="aside">
+      <Sider className="aside" collapsed={collapsed}>
         <div className="logo">
           <a
             href="https://github.com/hanxiaoluan/ReactApp"
@@ -23,7 +23,6 @@ class AppSider extends Component {
           </a>
         </div>
         <CustomMenu menu={menu}></CustomMenu>
-        
       </Sider>
     );
   }

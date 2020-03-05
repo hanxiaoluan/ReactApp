@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { Layout } from "antd";
 import AppHeader from "./AppHeader";
 import AppSider from "./AppSider";
@@ -13,10 +14,11 @@ class AppLayout extends Component {
     super(props);
   }
   render() {
+    const { isFold } = this.props;
     return (
       <Layout className="app">
-        <AppSider className="aside" menu={menu}></AppSider>
-        <Layout>
+        <AppSider className="aside" menu={menu} collapsed={isFold}></AppSider>
+        <Layout style={{ marginLeft: isFold ? "80px" : "200px" }}>
           <AppHeader className="header"></AppHeader>
           <Content className="content">
             <Switch>
@@ -39,4 +41,7 @@ class AppLayout extends Component {
     );
   }
 }
-export default withRouter(AppLayout);
+const mapStateToProps = (state, ownProps) => ({
+  isFold: state.menuIsFold.isFold
+});
+export default withRouter(connect(mapStateToProps)(AppLayout));
