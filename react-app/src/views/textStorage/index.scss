@@ -9,7 +9,73 @@
     display: flex;
     justify-content: space-around;
   }
+
   .ant-list-item {
     display: block;
+  }
+
+  .list {
+    .list-item {
+      margin-top: 20px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+
+  .repository {
+    p {
+      min-height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      border-bottom: 1px solid #cecece;
+
+      span {
+        margin-left: 20px;
+      }
+
+      .toggle-btn {
+        margin-right: 20px;
+
+        span {
+          margin: 0 auto;
+        }
+      }
+
+      .repository-input {
+        width: 500px;
+        border: none;
+
+
+        &:focus {
+          border: none;
+        }
+      }
+
+      .btn-box {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+
+        button {
+          margin: 10px 0;
+        }
+
+        span {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      float: right;
+      margin-right: 20px;
+    }
   }
 }

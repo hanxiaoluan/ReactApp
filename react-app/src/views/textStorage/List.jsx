@@ -3,18 +3,20 @@ import { Divider } from "antd";
 import { get } from "../../utils/service";
 
 const List = () => {
-  /* const getList = async () => {
+  const [menu, setMenu] = useState([]);
+  const getList = async () => {
     let res = await get("liuchen_StorageList");
-    return res;
+    setMenu(res);
   };
-  const [menu, setMenu] = useState(getList()); */
-  const menu = ["栾晗霄", "大好人"];
+  useEffect(() => {
+    getList();
+  }, []);
   return (
-    <div>
+    <div className="list">
       {menu.map((item, index) => {
         return (
           <div key={index}>
-            {item}
+            <p className="list-item">{item.name}</p>
             <Divider />
           </div>
         );
