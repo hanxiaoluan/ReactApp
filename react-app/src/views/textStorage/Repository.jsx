@@ -53,7 +53,7 @@ const Repository = ({ showRepository }) => {
     <div className="repository">
       <p>
         <span>仓库名</span>
-        <Input
+        <input
           className="repository-input"
           value={repositoryName}
           onChange={e => setRepositoryName(e.target.value)}
@@ -62,7 +62,7 @@ const Repository = ({ showRepository }) => {
       </p>
       <p>
         <span>仓库文字</span>
-        <Input
+        <input
           className="repository-input"
           value={repositoryContent}
           onChange={e => setRepositoryContent(e.target.value)}

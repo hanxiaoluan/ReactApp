@@ -8,8 +8,8 @@ const Log = () => {
         dataSource={logs}
         renderItem={item => (
           <List.Item>
-            <p style={{ whiteSpace: "pre-line" }}>{item.text}</p>
-            <p>{item.updateTime}</p>
+            <p style={{}}>日志： {item.text}</p>
+            <p>updateTime： {item.updateTime}</p>
           </List.Item>
         )}
       ></List>

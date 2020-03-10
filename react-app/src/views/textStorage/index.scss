@@ -12,6 +12,10 @@
 
   .ant-list-item {
     display: block;
+
+    p {
+      text-indent: 50px;
+    }
   }
 
   .list {
@@ -57,13 +61,13 @@
       }
 
       .repository-input {
-        width: 500px;
+        width: 900px;
         border: none;
+        display: block;
+        height: 50px;
+        border: none;
+        outline: none;
 
-
-        &:focus {
-          border: none;
-        }
       }
 
       .btn-box {

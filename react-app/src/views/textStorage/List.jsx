@@ -14,7 +14,7 @@ const List = ({ toRepository }) => {
 
   return (
     <div className="list">
-      {menu.length &&
+      {menu.length > 0 &&
         menu.map((item, index) => {
           return (
             <div key={index} onClick={() => toRepository(item.name)}>

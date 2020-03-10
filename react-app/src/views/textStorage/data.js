@@ -1,38 +1,53 @@
 export const logs = [
   {
-    id: 7,
-    text: `1. 【日志】增加未读红点和已读标绿
-           2. 【仓库】移动"复制"的位置至"仓库文字内部"`,
-    updateTime: "2020-3-1 20:00:11"
+    id: 20,
+    updateTime: ` Tue Mar 10 17:44:57 2020 +0800`,
+    text: `textStorage除删除功能基本齐全`
   },
   {
-    id: 6,
-    text: `1. 【列表】增加+按钮，可增加仓库
-           2. 【仓库】现在清空可以直接focus到文本，不需要额外点击
-           3. 【仓库】"修改"文字更新为"切换"`,
-    updateTime: "2020-3-1 03:49:44"
+    id: 19,
+    updateTime: `Thu Mar 5 23:25:21 2020 +0800`,
+    text: `ant的升级`
+  },
+
+  {
+    id: 18,
+    updateTime: `Thu Mar 5 23:24:42 2020 +0800`,
+    text: `🎸 textStorage的静态页面的完成和列表的初步渲染`
   },
   {
-    id: 5,
-    text: `1. 【仓库】增加清空按钮
-           2. 新增【更新日志】可查看近期更新内容`,
-    updateTime: "2020-2-28 22:02:35"
+    id: 17,
+    updateTime: `Thu Mar 5 19:37:21 2020 +0800`,
+    text: `🎸 增加小的redux，和textStorage模块`
   },
   {
-    id: 4,
-    text:
-      "增加【列表】，现在可以查看所有的仓库列表了，点击列表中的仓库可查看其内容",
-    updateTime: "2020-2-27 21:48:52"
+    id: 16,
+    updateTime: `Thu Mar 5 19:23:57 2020 +0800`,
+    text: ` Merge pull request #1 from hanxiaoluan/master
+    
+    build for jenkins`
   },
   {
-    id: 3,
-    text: "更换组件库，仓库名支持修改",
-    updateTime: "2020-2-12 23:12:29"
+    id: 15,
+    updateTime: `Thu Mar 5 19:18:00 2020 +0800`,
+    text: `🎸 trigger build test`
   },
-  { id: 2, text: "增加复制功能", updateTime: "2020-2-10 23:28:29" },
   {
-    id: 1,
-    text: "文字收集仓上线，提供储存文字的功能",
-    updateTime: "2020-2-8 21:20:29"
+    id: 14,
+    updateTime: `Thu Mar 5 19:15:46 2020 +0800`,
+    text: `Merge pull request #1 from double2kill/master
+    
+    Rename customMenu.jsx to CustomMenu.jsx
+`
+  },
+  {
+    id: 13,
+    updateTime: `Thu Mar 5 17:00:35 2020 +0800`,
+    text: ` add jenkinsfile`
+  },
+  {
+    id: 12,
+    updateTime: ` Mon Mar 2 17:38:56 2020 +0800`,
+    text: ` docs: ✏️ readme.md文档更新`
   }
 ];

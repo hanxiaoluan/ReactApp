@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
     "eslint-config-airbnb": "^18.0.1",
     "react-app-rewired": "^2.1.5"
   }
