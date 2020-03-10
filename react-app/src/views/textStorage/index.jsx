@@ -1,23 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { Divider, Menu } from "antd";
-/* import { PlusOutlined } from "@ant-design/icons"; */
+import { PlusOutlined } from "@ant-design/icons";
 import "./index.scss";
 import List from "./List";
 import Repository from "./Repository";
 import Log from "./Log";
 const TextStorage = () => {
+  const titleList = ["list", "repository", "log"];
   const [showComponent, setShowComponent] = useState("list");
-  useEffect(() => {});
+  const [showRepository, setShowRepository] = useState("");
+
+  const toRepository = repositoryName => {
+    setShowRepository(repositoryName);
+    setShowComponent("repository");
+  };
+
   return (
     <div className="text-storage">
       <h3>
         文字搜集仓{" "}
-        {/* <PlusOutlined
-          style={{ color: "red", marginLeft: 10, cursor: "pointer" }} */}
+        <PlusOutlined
+          style={{ color: "red", marginLeft: 10, cursor: "pointer" }}
         />
       </h3>
       <Divider />
-      <Menu mode="horizontal" theme="light">
+      <Menu
+        mode="horizontal"
+        theme="light"
+        selectedKeys={[
+          (titleList.findIndex(item => item === showComponent) + 1).toString()
+        ]}
+      >
         <Menu.Item key="1" onClick={() => setShowComponent("list")}>
           列表
         </Menu.Item>
@@ -30,9 +43,13 @@ const TextStorage = () => {
       </Menu>
       <div>
         {showComponent === "list" ? (
-          <List />
+          <List
+            toRepository={repositoryName => {
+              toRepository(repositoryName);
+            }}
+          />
         ) : showComponent === "repository" ? (
-          <Repository />
+          <Repository showRepository={showRepository} />
         ) : (
           <Log />
         )}

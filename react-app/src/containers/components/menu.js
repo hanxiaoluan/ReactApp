@@ -72,6 +72,11 @@ const menu = [
     key: "/textStorage",
     icon: "ordered-list",
     title: "textStorage"
+  },
+  {
+    key: "/reddit",
+    icon: "reddit",
+    title: "reddit"
   }
 ];
 export default menu;

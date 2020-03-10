@@ -1,4 +1,5 @@
-import { Layout, Icon, Badge, Dropdown, Menu, Avatar } from "antd";
+import { Layout, Badge, Dropdown, Menu, Avatar } from "antd";
+import { Icon } from "@ant-design/compatible";
 import React, { Component } from "react";
 import avatar from "@/assets/images/avatar.png";
 import { connect } from "react-redux";

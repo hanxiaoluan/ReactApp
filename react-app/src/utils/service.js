@@ -1,17 +1,18 @@
 import axios from "axios";
 import URL from "@/constants/index.js";
 
-const instance = axios.create({
-  baseURL: URL.baseURL,
-  timeout: 1000
-});
-export const get = url => {
-  return instance
-    .get(url, {})
-    .then(res => {
-      return JSON.parse(decodeURIComponent(res.data));
-    })
-    .catch(error => {
-      alert(error);
-    });
-};
+const SPAIR = URL.baseURL;
+
+export default class SpairService {
+  constructor(namespace) {
+    this.namespace = namespace;
+  }
+  async get(key) {
+    const res = (await axios.get(`${SPAIR}/${this.namespace}/${key}`)) || "";
+    return decodeURIComponent(res.data);
+  }
+  post(key, value) {
+    const encodedValue = encodeURIComponent(encodeURIComponent(value));
+    return axios.get(`${SPAIR}/${this.namespace}/${key}/${encodedValue}`);
+  }
+}
