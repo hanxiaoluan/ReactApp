@@ -11,6 +11,7 @@ const Table = loadable(() => import("@/views/ShowView/Table/Index.jsx"));
 const Tabs = loadable(() => import("@/views/ShowView/Tabs/Index.jsx"));
 const Tree = loadable(() => import("@/views/ShowView/Tree/Index.jsx"));
 const TextStorage = loadable(() => import("@/views/textStorage/index.jsx"));
+const Reddit = loadable(() => import("@/views/reddit/containers/Reddit.js"));
 const routes = [
   {
     path: "/dashboard",
@@ -51,6 +52,11 @@ const routes = [
     path: "/textstorage",
     name: "textStorage",
     component: TextStorage
+  },
+  {
+    path: "/reddit",
+    name: "reddit",
+    component: Reddit
   }
 ];
 export default routes;

@@ -1,4 +1,9 @@
 import { combineReducers } from "redux";
 import menuIsFold from "./toggleMenu";
-const rootReducer = combineReducers({ menuIsFold });
+import { postsBySubreddit, selectedSubreddit } from "./reddit";
+const rootReducer = combineReducers({
+  menuIsFold,
+  postsBySubreddit,
+  selectedSubreddit
+});
 export default rootReducer;

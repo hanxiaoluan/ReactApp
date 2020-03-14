@@ -1,16 +1,13 @@
+import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import store from "./configureStore";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import rootReducer from "./reducers/index";
+
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
 const AppView = (
   <Provider store={store}>
     <App />
