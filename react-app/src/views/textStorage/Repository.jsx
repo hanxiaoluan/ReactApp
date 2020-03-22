@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Divider, Input, Button, Alert, message } from 'antd';
-import { textStorageService, textStorageListService } from './request';
+import React, { useState, useEffect } from "react";
+import { Divider, Input, Button, Alert, message } from "antd";
+import { textStorageService, textStorageListService } from "./request";
 
 const Repository = ({ showRepository }) => {
-  const [repositoryName, setRepositoryName] = useState(showRepository || '');
-  const [repositoryContent, setRepositoryContent] = useState('');
+  const [repositoryName, setRepositoryName] = useState(showRepository || "");
+  const [repositoryContent, setRepositoryContent] = useState("");
   const updateStorageList = async storageName => {
     const storageData = {
       name: repositoryName,
-      date: new Date(),
+      date: new Date()
     };
     let storageList = await textStorageListService.get();
     if (!Array.isArray(storageList)) {
@@ -21,24 +21,25 @@ const Repository = ({ showRepository }) => {
   const submit = async () => {
     let res = await textStorageService.post(repositoryName, repositoryContent);
     await updateStorageList(repositoryName);
-    message.success('提交成功');
   };
   const handleCopy = value => {
-    const tempInput = document.createElement('input');
-    tempInput.setAttribute('value', repositoryContent);
+    const tempInput = document.createElement("input");
+    tempInput.setAttribute("value", repositoryContent);
     document.body.appendChild(tempInput);
     tempInput.select();
-    let successful = document.execCommand('copy');
+    let successful = document.execCommand("copy");
     document.body.removeChild(tempInput);
     if (successful) {
-      message.success('复制成功');
+      message.success("复制成功");
     } else {
-      message.warning('复制失败，请手动复制');
+      message.warning("复制失败，请手动复制");
     }
   };
   const getText = async () => {
     try {
+      console.log(repositoryName);
       let res = await textStorageService.get(repositoryName);
+      console.log(res);
       setRepositoryContent(res);
     } catch (error) {
       message.error(error);
