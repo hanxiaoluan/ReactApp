@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Layout, Icon } from "antd";
-import CustomMenu from "./components/CustomMenu.jsx";
+import React, { Component } from 'react';
+import { Layout, Icon } from 'antd';
+import CustomMenu from './components/CustomMenu.jsx';
 const { Sider } = Layout;
 
 class AppSider extends Component {
@@ -18,11 +18,11 @@ class AppSider extends Component {
           >
             <Icon
               type="github"
-              style={{ fontSize: "2.8rem", color: "#fff" }}
+              style={{ fontSize: '2.8rem', color: '#fff' }}
             ></Icon>
           </a>
         </div>
-        <CustomMenu menu={menu}></CustomMenu>
+        <CustomMenu menu={menu} {...this.props}></CustomMenu>
       </Sider>
     );
   }

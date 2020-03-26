@@ -9,19 +9,15 @@ import {
 import loadable from './utils/loadable';
 import './App.css';
 import '@/styles/base.scss';
-const Layout = loadable(() => import('./containers/Layout.jsx'));
-const Login = loadable(() => import('@/views/Login/Index'));
+const Layout = loadable(() => import('./layout/Layout.jsx'));
+const Login = loadable(() => import('@/views/login/Index'));
 function App() {
   return (
     <Router>
       <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => <Redirect to="/dashboard" />}
-        ></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route component={Layout}></Route>
+        {/*   <Route path="/" exact render={() => <Redirect to="/login" />}></Route> */}
+        <Route path="/login" exact component={Login}></Route>
+        <Route path="/" component={Layout}></Route>
       </Switch>
     </Router>
   );

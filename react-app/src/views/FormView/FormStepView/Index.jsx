@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 class FormStepView extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
-    return <div>FormStepView</div>
+    return <div>FormStepView</div>;
   }
 }
-export default FormStepView
+export default FormStepView;

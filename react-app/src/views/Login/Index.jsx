@@ -3,10 +3,26 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import store from '../../configureStore';
 import axios from 'axios';
-const Login = () => {
+import { login } from '@/actions/login';
+import { connect } from 'react-redux';
+const Login = ({ login, history, match, location }) => {
   const [form] = Form.useForm();
-  const handleSubmit = () => {
-    console.log(form.getFieldValue(), form);
+
+  const onFinish = values => {
+    const { username, password } = form.getFieldsValue();
+    axios
+      .post(
+        'https://www.fastmock.site/mock/8216d7df0342be8867ec5f42955a5706/reactapp/api/login',
+        {
+          username: username,
+          password: password,
+        },
+      )
+      .then(res => res.resolve())
+      .catch(error => new Error(error));
+    sessionStorage.setItem('role', 'guest');
+    login(sessionStorage.getItem('role'));
+    history.push('/');
   };
 
   return (
@@ -18,6 +34,7 @@ const Login = () => {
         initialValues={{
           remember: true,
         }}
+        onFinish={onFinish}
       >
         <Form.Item
           name="username"
@@ -63,7 +80,6 @@ const Login = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            onClick={() => handleSubmit()}
           >
             Log in
           </Button>
@@ -73,4 +89,7 @@ const Login = () => {
     </>
   );
 };
-export default Login;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  login: role => dispatch(login(role)),
+});
+export default connect(null, mapDispatchToProps)(Login);
