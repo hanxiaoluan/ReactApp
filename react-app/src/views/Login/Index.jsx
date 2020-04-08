@@ -37,10 +37,15 @@ const Login = ({ login, history, match, location }) => {
           initialValues={{
             remember: false,
           }}
+          hideRequiredMark
           onFinish={onFinish}
         >
+          <h3 className="title">登录</h3>
           <Form.Item
             name="username"
+            label={<span className="iconfont icon-user"></span>}
+            colon={false}
+            style={{ marginBottom: 10 }}
             rules={[
               {
                 required: true,
@@ -48,13 +53,12 @@ const Login = ({ login, history, match, location }) => {
               },
             ]}
           >
-            <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
-            />
+            <Input placeholder="Username" autoComplete="off" />
           </Form.Item>
           <Form.Item
+            label={<span className="iconfont icon-password"></span>}
             name="password"
+            colon={false}
             rules={[
               {
                 required: true,
@@ -63,19 +67,10 @@ const Login = ({ login, history, match, location }) => {
             ]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
+              autoComplete={false}
             />
-          </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
           </Form.Item>
 
           <Form.Item>
@@ -86,8 +81,17 @@ const Login = ({ login, history, match, location }) => {
             >
               Log in
             </Button>
-            Or <a href="">register now!</a>
           </Form.Item>
+          <div className="tooltip">
+            <p>
+              <span>管理员登录</span> admin 123456
+            </p>
+            <p>
+              <span>游客登录</span> guest 123456
+            </p>
+          </div>
+
+          <div className="footer">欢迎登录后台管理系统</div>
         </Form>
       </Basckground>
     </>

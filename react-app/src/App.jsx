@@ -9,6 +9,7 @@ import {
 import loadable from './utils/loadable';
 import './App.css';
 import '@/styles/base.scss';
+import './assets/fonts/iconfont.css';
 const Layout = loadable(() => import('./layout/Layout.jsx'));
 const Login = loadable(() => import('@/views/login/Index'));
 function App() {
