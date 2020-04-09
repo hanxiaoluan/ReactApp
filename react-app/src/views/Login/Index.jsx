@@ -53,7 +53,7 @@ const Login = ({ login, history, match, location }) => {
               },
             ]}
           >
-            <Input placeholder="Username" autoComplete="off" />
+            <Input placeholder="Username" style={{ autoComplete: 'off' }} />
           </Form.Item>
           <Form.Item
             label={<span className="iconfont icon-password"></span>}
@@ -69,7 +69,7 @@ const Login = ({ login, history, match, location }) => {
             <Input
               type="password"
               placeholder="Password"
-              autoComplete={false}
+              style={{ autoComplete: 'off' }}
             />
           </Form.Item>
 

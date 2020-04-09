@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/*  <Route path="/" exact render={() => <Redirect to="/login" />}></Route> */}
         <Route path="/login" exact component={Login}></Route>
         <Route path="/" component={Layout}></Route>
       </Switch>

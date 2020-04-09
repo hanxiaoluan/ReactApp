@@ -10,7 +10,7 @@ import routes from '@/router/index.js';
 const { Content } = Layout;
 function Authority(routes, role) {
   return (
-    routes && routes.filter(route => route.auth.find(item => item === role))
+    routes && routes.filter((route) => route.auth.find((item) => item === role))
   );
 }
 class AppLayout extends Component {
@@ -19,7 +19,8 @@ class AppLayout extends Component {
   }
   render() {
     const { isFold, role } = this.props;
-    console.log(role, Authority(routes, role));
+    const hasLogined = sessionStorage.getItem('role');
+    if (!hasLogined) return <Redirect to="/login" />;
     return (
       <Layout className="app">
         <AppSider
@@ -32,13 +33,13 @@ class AppLayout extends Component {
           <AppHeader className="header"></AppHeader>
           <Content className="content">
             <Switch>
-              {Authority(routes, role).map(item => {
+              {Authority(routes, role).map((item) => {
                 return (
                   <Route
                     path={item.path}
                     key={item.path}
                     exact
-                    render={routeProps => (
+                    render={(routeProps) => (
                       <item.component {...routeProps}></item.component>
                     )}
                   ></Route>
