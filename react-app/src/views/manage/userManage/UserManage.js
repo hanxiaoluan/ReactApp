@@ -9,6 +9,7 @@ import {
   Dropdown,
   Menu,
   message,
+  Tooltip,
 } from 'antd';
 import { getRoleList, postRoleList } from '@/api/role';
 import { getUser, postUser } from '@/api/login';
@@ -75,13 +76,11 @@ class UserManage extends Component {
         title: 'Operation',
         align: 'center',
         render: (text, record) => (
-          <Button
-            type="primary"
-            disabled={record.name === '小白'}
-            onClick={this.showModal}
-          >
-            编辑权限
-          </Button>
+          <Tooltip placement="topLeft" title={<span>你没有该权限</span>}>
+            <Button type="primary" disabled>
+              编辑权限
+            </Button>
+          </Tooltip>
         ),
       },
     ];
