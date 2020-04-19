@@ -3,6 +3,8 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import store from '../../configureStore';
 import axios from 'axios';
+import { getUser, postUser } from '@/api/login.js';
+import { getPermission, postPermission } from '@/api/permission';
 import './login.scss';
 import { login } from '@/actions/login';
 import { connect } from 'react-redux';
@@ -11,20 +13,28 @@ const Login = ({ login, history, match, location }) => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    const { username, password } = form.getFieldsValue();
-
-    const res = await axios
-      .post(
-        'https://www.fastmock.site/mock/8216d7df0342be8867ec5f42955a5706/reactapp/api/login',
-        {
-          username: username,
-          password: password,
-        },
-      )
-      .then((res) => res.data);
-    sessionStorage.setItem('role', res.data.userInfo.role);
-    login(sessionStorage.getItem('role'));
-    history.push('/');
+    login(values);
+    /* let res = postPermission('admin', {
+      permission: [
+        'dashboard',
+        'form',
+        'form-base',
+        'form-step',
+        'showview',
+        'Collapse',
+        'Table',
+        'Tabs',
+        'Tree',
+        'registration',
+        'news',
+        'recruits',
+        'textStorage',
+        'manage',
+        'role-manage',
+        'user-manage',
+        'reddit',
+      ],
+    }); */
   };
 
   return (

@@ -12,6 +12,15 @@ const Tabs = loadable(() => import('@/views/showview/Tabs/Index.jsx'));
 const Tree = loadable(() => import('@/views/showview/Tree/Index.jsx'));
 const TextStorage = loadable(() => import('@/views/textStorage/index.jsx'));
 const Reddit = loadable(() => import('@/views/reddit/containers/Reddit.js'));
+const UserManage = loadable(() =>
+  import('@/views/manage/userManage/UserManage.js'),
+);
+const RoleManage = loadable(() =>
+  import('@/views/manage/roleManage/RoleManage.js'),
+);
+const DataManage = loadable(() =>
+  import('@/views/manage/dataManage/DataManage.js'),
+);
 const routes = [
   {
     path: '/dashboard',
@@ -67,6 +76,24 @@ const routes = [
     name: 'reddit',
     auth: ['admin', 'guest'],
     component: Reddit,
+  },
+  {
+    path: '/manage/user-manage',
+    name: 'user-manage',
+    auth: ['admin'],
+    component: UserManage,
+  },
+  {
+    path: '/manage/role-manage',
+    name: 'role-manage',
+    auth: ['admin'],
+    component: RoleManage,
+  },
+  {
+    path: '/manage/data-manage',
+    name: 'data-manage',
+    auth: ['admin'],
+    component: DataManage,
   },
 ];
 export default routes;

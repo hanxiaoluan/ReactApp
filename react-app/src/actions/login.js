@@ -1,4 +1,7 @@
-export const login = role => ({
+export const login = (data) => ({
   type: 'LOGIN',
-  role,
+  data,
+});
+export const logout = () => ({
+  type: 'LOGOUT',
 });

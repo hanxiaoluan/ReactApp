@@ -76,12 +76,6 @@ const menu = [
     auth: ['admin'],
   },
   {
-    key: '/manage',
-    icon: 'lock',
-    title: 'manage',
-    auth: ['admin'],
-  },
-  {
     key: '/textStorage',
     icon: 'ordered-list',
     title: 'textStorage',
@@ -92,6 +86,32 @@ const menu = [
     icon: 'reddit',
     title: 'reddit',
     auth: ['admin', 'guest'],
+  },
+  {
+    key: '/manage',
+    icon: 'contacts',
+    title: 'manage',
+    auth: ['admin'],
+    subs: [
+      {
+        key: '/manage/user-manage',
+        icon: 'user-add',
+        title: 'user-manage',
+        auth: ['admin'],
+      },
+      {
+        key: '/manage/role-manage',
+        icon: 'usergroup-add',
+        title: 'role-manage',
+        auth: ['admin'],
+      },
+      {
+        key: '/manage/data-manage',
+        icon: 'database',
+        title: 'data-manage',
+        auth: ['admin'],
+      },
+    ],
   },
 ];
 export default menu;

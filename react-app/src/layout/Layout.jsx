@@ -6,21 +6,19 @@ import AppHeader from './AppHeader';
 import AppSider from './AppSider';
 import menu from './components/menu';
 import './styles/layout.scss';
-import routes from '@/router/index.js';
+import Authority from '@/components/authority/Authority';
+import { getToken } from '@/utils/cookie';
 const { Content } = Layout;
-function Authority(routes, role) {
-  return (
-    routes && routes.filter((route) => route.auth.find((item) => item === role))
-  );
-}
+
 class AppLayout extends Component {
   constructor(props) {
     super(props);
   }
+  componentWillMount() {}
   render() {
     const { isFold, role } = this.props;
-    const hasLogined = sessionStorage.getItem('role');
-    if (!hasLogined) return <Redirect to="/login" />;
+    const token = getToken();
+    if (!token) return <Redirect to="/login" />;
     return (
       <Layout className="app">
         <AppSider
@@ -32,20 +30,7 @@ class AppLayout extends Component {
         <Layout style={{ marginLeft: isFold ? '80px' : '200px' }}>
           <AppHeader className="header"></AppHeader>
           <Content className="content">
-            <Switch>
-              {Authority(routes, role).map((item) => {
-                return (
-                  <Route
-                    path={item.path}
-                    key={item.path}
-                    exact
-                    render={(routeProps) => (
-                      <item.component {...routeProps}></item.component>
-                    )}
-                  ></Route>
-                );
-              })}
-            </Switch>
+            <Authority />
           </Content>
         </Layout>
       </Layout>
@@ -55,5 +40,6 @@ class AppLayout extends Component {
 const mapStateToProps = (state, ownProps) => ({
   isFold: state.menuIsFold.isFold,
   role: state.user.role,
+  permission: state.user.permission,
 });
 export default withRouter(connect(mapStateToProps)(AppLayout));

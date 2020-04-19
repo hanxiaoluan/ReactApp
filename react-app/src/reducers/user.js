@@ -1,11 +1,13 @@
-let role = sessionStorage.getItem('role');
-const initialUserInfo = { role: role };
+const initialUserInfo = { role: '', permission: [] };
 export function user(state = initialUserInfo, action) {
   switch (action.type) {
-    case 'LOGIN':
+    case 'LOGINFLOW':
       return Object.assign({}, state, {
         role: action.role,
+        permission: action.permission,
       });
+    case 'LOGOUT':
+      return Object.assign({}, state, { role: '', permission: [] });
     default:
       return state;
   }

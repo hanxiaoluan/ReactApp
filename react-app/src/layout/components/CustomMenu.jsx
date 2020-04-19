@@ -6,8 +6,8 @@ import { Icon } from '@ant-design/compatible';
 import { Switch, Route, Link, withRouter } from 'react-router-dom';
 import menu from './menu';
 
-function menuIsShow(menu, role) {
-  return menu.auth.find(item => item === role);
+function menuIsShow(menu, permession) {
+  return permession.includes(menu.name);
 }
 class CustomMenu extends Component {
   constructor(props) {
@@ -23,11 +23,12 @@ class CustomMenu extends Component {
       selectedKeys: pathname
     });
   } */
-  renderMenuItem = ({ key, icon, title, auth }) => {
-    const { role } = this.props;
+  renderMenuItem = ({ key, icon, title }) => {
+    const { permission } = this.props;
 
     return (
-      auth.find(item => item === role) && (
+      permission.length > 0 &&
+      permission.includes(title) && (
         <Menu.Item key={key}>
           <Link to={key}>
             {icon && <Icon type={icon}></Icon>}
@@ -37,10 +38,11 @@ class CustomMenu extends Component {
       )
     );
   };
-  renderSubMenu = ({ key, icon, title, subs, auth }) => {
-    const { role } = this.props;
+  renderSubMenu = ({ key, icon, title, subs }) => {
+    const { permission } = this.props;
     return (
-      auth.find(item => item === role) && (
+      permission.length > 0 &&
+      permission.includes(title) && (
         <Menu.SubMenu
           key={key}
           title={
@@ -51,7 +53,7 @@ class CustomMenu extends Component {
           }
         >
           {subs &&
-            subs.map(item => {
+            subs.map((item) => {
               return item.subs && item.subs.length > 0
                 ? this.renderSubMenu(item)
                 : this.renderMenuItem(item);
@@ -66,7 +68,7 @@ class CustomMenu extends Component {
     return (
       <Menu mode="inline" theme="dark">
         {menu &&
-          menu.map(item => {
+          menu.map((item) => {
             return item.subs && item.subs.length > 0
               ? this.renderSubMenu(item)
               : this.renderMenuItem(item);

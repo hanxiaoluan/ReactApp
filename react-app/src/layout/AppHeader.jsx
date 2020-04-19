@@ -1,15 +1,18 @@
-import { Layout, Badge, Dropdown, Menu, Avatar } from "antd";
-import { Icon } from "@ant-design/compatible";
-import React, { Component } from "react";
-import avatar from "@/assets/images/avatar.png";
-import { connect } from "react-redux";
-import { toggleMenu } from "../actions/toggleMenu";
+import { Layout, Badge, Dropdown, Menu, Avatar } from 'antd';
+import { Icon } from '@ant-design/compatible';
+import React, { Component } from 'react';
+import avatar from '@/assets/images/avatar.png';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { toggleMenu } from '../actions/toggleMenu';
+import { logout } from '../actions/login';
+import { removeToken } from '@/utils/cookie';
 const { Header } = Layout;
 class AppHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuIsFold: false
+      menuIsFold: false,
     };
   }
   /* toggleMenu = () => {
@@ -17,10 +20,16 @@ class AppHeader extends Component {
       menuIsFold: !this.state.menuIsFold
     });
   }; */
+  handleClickLogout = () => {
+    const { logout, history } = this.props;
+    logout();
+    removeToken();
+    history.push('/login');
+  };
   render() {
     const menu = (
       <Menu>
-        <Menu.ItemGroup title={"用户设置"}>
+        <Menu.ItemGroup title={'用户设置'}>
           <Menu.Divider></Menu.Divider>
           <Menu.Item key="1">
             <Icon type="edit" theme="filled"></Icon>个人设置
@@ -30,7 +39,7 @@ class AppHeader extends Component {
           </Menu.Item>
         </Menu.ItemGroup>
         <Menu.Divider></Menu.Divider>
-        <Menu.Item>
+        <Menu.Item onClick={this.handleClickLogout}>
           <span>
             <Icon type="logout" />
             退出登录
@@ -41,15 +50,15 @@ class AppHeader extends Component {
     return (
       <Header className="header">
         <Icon
-          type={this.props.isFold ? "menu-fold" : "menu-unfold"}
-          style={{ fontSize: "2rem" }}
+          type={this.props.isFold ? 'menu-fold' : 'menu-unfold'}
+          style={{ fontSize: '2rem' }}
           onClick={() => this.props.toggleMenu()}
         />
         <div className="header-right">
           <a href="https://github.com/hanxiaoluan/ReactApp">
             <Icon
               type="github"
-              style={{ fontSize: "2rem", color: "black", marginRight: "15px" }}
+              style={{ fontSize: '2rem', color: 'black', marginRight: '15px' }}
             />
           </a>
           <Badge dot>
@@ -59,20 +68,23 @@ class AppHeader extends Component {
           </Badge>
           <Dropdown
             overlay={menu}
-            trigger={["click"]}
-            overlayStyle={{ width: "20rem" }}
+            trigger={['click']}
+            overlayStyle={{ width: '20rem' }}
           >
-            <Avatar src={avatar} size={"32px"} style={{ marginLeft: "15px" }} />
+            <Avatar src={avatar} size={'32px'} style={{ marginLeft: '15px' }} />
           </Dropdown>
         </div>
       </Header>
     );
   }
 }
-const mapStateToProps = state => ({
-  isFold: state.menuIsFold.isFold
+const mapStateToProps = (state) => ({
+  isFold: state.menuIsFold.isFold,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  toggleMenu: () => dispatch(toggleMenu())
+  toggleMenu: () => dispatch(toggleMenu()),
+  logout: () => dispatch(logout()),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AppHeader),
+);
