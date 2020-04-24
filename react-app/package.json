@@ -54,7 +54,12 @@
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
+    "chalk": "^4.0.0",
     "eslint-config-airbnb": "^18.0.1",
-    "react-app-rewired": "^2.1.5"
+    "postcss-loader": "^3.0.0",
+    "postcss-pxtorem": "^5.1.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "react-app-rewired": "^2.1.5",
+    "webpack-bundle-analyzer": "^3.7.0"
   }
 }

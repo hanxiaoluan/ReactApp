@@ -10,48 +10,63 @@ import {
   Menu,
   message,
   Tooltip,
+  Drawer,
+  Input,
+  Divider,
+  Tree,
 } from 'antd';
 import { getRoleList, postRoleList } from '@/api/role';
 import { getUser, postUser } from '@/api/login';
-import { DownOutlined } from '@ant-design/icons';
+import { postPermission } from '@/api/permission';
+import {
+  DownOutlined,
+  UserOutlined,
+  InfoCircleOutlined,
+} from '@ant-design/icons';
+import treeData from './treeData';
 class UserManage extends Component {
   state = {
     visible: false,
-    roleList: [],
-    activeRole: '',
-    guestRole: '',
+    roleValue: 'guest',
+    expandedKeys: [],
+    checkedKeys: [],
+    selectedKeys: [],
+    autoExpandParent: true,
   };
-  handleOk = async (e) => {
+  showDrawer = () => {
+    this.setState({ visible: true });
+  };
+  onClose = () => {
+    this.setState({ visible: false });
+  };
+  onExpand = (expandedKeys) => {
+    this.setState({ expandedKeys, autoExpandParent: false });
+  };
+  onCheck = (checkedKeys) => {
+    this.setState({ checkedKeys });
+  };
+  onSelect = (selectedKeys, info) => {
+    console.log('onSelect', info);
+    this.setState({ selectedKeys });
+  };
+  addRole = async () => {
     try {
-      let userInfo = await getUser('user');
-      userInfo[1].role = this.state.activeRole;
-      await postUser('user', userInfo);
-      message.success('编辑成功');
-      this.setState({ visible: false, guestRole: this.state.activeRole });
+      let roleList = await getRoleList('role');
+      roleList.splice(1, 1);
+      roleList.push({
+        name: this.state.roleValue,
+        permission: this.state.checkedKeys,
+      });
+      await postRoleList('role', roleList);
+      await postPermission(this.state.roleValue, {
+        permission: this.state.checkedKeys,
+      });
+      message.info('ok');
     } catch (e) {
       throw new Error(e);
     }
   };
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({ visible: false });
-  };
-  showModal = () => {
-    this.setState({ visible: true, activeRole: this.state.guestRole });
-  };
-  initPage = async () => {
-    let res = await getRoleList('role');
-    let userList = await getUser('user');
-    this.setState({
-      roleList: res,
-      guestRole: userList.find((item) => item.username === 'guest').role,
-      activeRole: userList.find((item) => item.username === 'guest').role,
-    });
-  };
-  handleChangeActiveRole = (e, value) => {
-    e.preventDefault();
-    this.setState({ activeRole: value.name });
-  };
+  initPage = async () => {};
   componentDidMount() {
     this.initPage();
   }
@@ -77,7 +92,11 @@ class UserManage extends Component {
         align: 'center',
         render: (text, record) => (
           <Tooltip placement="topLeft" title={<span>你没有该权限</span>}>
-            <Button type="primary" disabled>
+            <Button
+              type="primary"
+              disabled={record.name === '小白'}
+              onClick={this.showDrawer}
+            >
               编辑权限
             </Button>
           </Tooltip>
@@ -94,26 +113,11 @@ class UserManage extends Component {
       {
         key: 2,
         name: 'guest',
-        role: this.state.guestRole,
+        role: 'guest',
         description:
           'Just a visitor. Can only see the home page and the assigned page',
       },
     ];
-    const roleMenu = (
-      <Menu>
-        {this.state.roleList.map((item, index) => (
-          <Menu.Item key={index}>
-            <a
-              target="_blank"
-              rel="noopener noreferer"
-              onClick={(e) => this.handleChangeActiveRole(e, item)}
-            >
-              {item.name}
-            </a>
-          </Menu.Item>
-        ))}
-      </Menu>
-    );
     return (
       <Layout>
         <Table
@@ -122,24 +126,47 @@ class UserManage extends Component {
           bordered
           pagination={false}
         />
-        <Modal
-          title="编辑权限"
+        <Drawer
           visible={this.state.visible}
-          onCancel={this.handleCancel}
-          onOk={this.handleOk}
+          onClose={this.onClose}
+          placement="right"
+          title="编辑角色"
+          closable={false}
+          getContainer={false}
+          width={400}
+          footer={
+            <Button type="primary" onClick={this.addRole}>
+              编辑角色
+            </Button>
+          }
         >
-          guest当前角色为
-          <Dropdown overlay={roleMenu} trigger={['click']}>
-            <a
-              className="ant-dropdown-link"
-              onClick={(e) => e.preventDefault()}
-              style={{ fontSize: 20 }}
-            >
-              {this.state.activeRole}
-              <DownOutlined />
-            </a>
-          </Dropdown>
-        </Modal>
+          <Input
+            placeholder="Enter your role's name"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            suffix={
+              <Tooltip title="请输入角色名称">
+                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+              </Tooltip>
+            }
+            value={this.state.roleValue}
+            onChange={(e) => {
+              this.setState({ roleValue: e.target.value });
+            }}
+            disabled
+          />
+          <Divider />
+          <Tree
+            checkable
+            onExpand={this.onExpand}
+            expandKeys={this.state.expandedKeys}
+            autoExpandParent={this.state.autoExpandParent}
+            onCheck={this.onCheck}
+            checkedKeys={this.state.checkedKeys}
+            onSelect={this.onSelect}
+            selectedKeys={this.state.selectedKeys}
+            treeData={treeData}
+          />
+        </Drawer>
       </Layout>
     );
   }

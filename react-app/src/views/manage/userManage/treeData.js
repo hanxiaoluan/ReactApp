@@ -37,10 +37,7 @@ const treeData = [
   {
     title: 'manage',
     key: 'manage',
-    children: [
-      { title: 'role-manage', key: 'role-manage' },
-      { title: 'user-manage', key: 'user-manage' },
-    ],
+    children: [{ title: 'role-manage', key: 'role-manage' }],
   },
 ];
 export default treeData;

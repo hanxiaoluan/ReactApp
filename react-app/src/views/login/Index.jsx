@@ -14,27 +14,6 @@ const Login = ({ login, history, match, location }) => {
 
   const onFinish = async (values) => {
     login(values);
-    /* let res = postPermission('admin', {
-      permission: [
-        'dashboard',
-        'form',
-        'form-base',
-        'form-step',
-        'showview',
-        'Collapse',
-        'Table',
-        'Tabs',
-        'Tree',
-        'registration',
-        'news',
-        'recruits',
-        'textStorage',
-        'manage',
-        'role-manage',
-        'user-manage',
-        'reddit',
-      ],
-    }); */
   };
 
   return (
@@ -94,7 +73,7 @@ const Login = ({ login, history, match, location }) => {
           </Form.Item>
           <div className="tooltip">
             <p>
-              <span>管理员登录</span> admin 123456
+              <span>管理员登录</span> 小白 dahaoren
             </p>
             <p>
               <span>游客登录</span> guest 123456

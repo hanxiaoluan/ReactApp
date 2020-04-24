@@ -64,7 +64,7 @@ class CustomMenu extends Component {
   };
   render() {
     let { openKeys, selectedKeys } = this.state;
-    const { menu, role } = this.props;
+    const { menu } = this.props;
     return (
       <Menu mode="inline" theme="dark">
         {menu &&
